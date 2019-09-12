@@ -8,6 +8,12 @@ public class MainController {
 
 	@GetMapping("/")
 	public String index() {
-		return "index.html";
+		return "index";
+	}
+	
+    //이 부분 추가
+	@GetMapping("/thymeleaf")
+	public String thymeleaf() {
+		return "thymeleaf"; //thymeleaf.html과 매핑
 	}
 }
