@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+account 추가 
+
+<form method="post" th:action="@{/account/add}">
+	Email : <input type="text" name="email" />
+	<button type="submit">추가</button>
+</form>
+<br/>
+<a href="/account/list" th:href="@{/account/list}">account list</a>
+
+</body>
+</html>

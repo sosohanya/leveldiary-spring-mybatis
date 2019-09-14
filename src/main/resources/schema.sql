@@ -1,11 +1,11 @@
-DROP TABLE IF EXISTS testtbl;
+DROP TABLE IF EXISTS accounts;
  
-CREATE TABLE testtbl (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  name VARCHAR(250) NOT NULL
+CREATE TABLE accounts (
+  id BIGINT AUTO_INCREMENT  PRIMARY KEY,
+  email VARCHAR(255) NOT NULL
 );
  
-INSERT INTO testtbl (name) VALUES
-  ('name1'),
-  ('name2'),
-  ('name3');
+INSERT INTO accounts (email) VALUES
+  ('email1@email.com'),
+  ('email2@email.com'),
+  ('email3@email.com');
