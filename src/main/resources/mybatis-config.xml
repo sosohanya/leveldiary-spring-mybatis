@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- <typeAliases>
+		<package name="com.sosohanya.leveldiary.account"/>
+	</typeAliases> -->
+	<typeAliases>
+		<typeAlias type="com.sosohanya.leveldiary.account.Account" alias="Account"/>
+		<typeAlias type="com.sosohanya.leveldiary.diary.Diary" alias="Diary"/>
+	</typeAliases>
+	<!-- 매핑정보 추가 -->
+	<mappers>
+		<mapper resource="mybatis/AccountMapper.xml" />
+		<mapper resource="mybatis/DiaryMapper.xml" />
+	</mappers>
+</configuration>

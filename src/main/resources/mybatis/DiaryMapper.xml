@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Diary">
+ 	<select id="count" resultType="int">
+ 		select count(*) from diary
+ 	</select>
+ 	
+ 	<insert id="save" parameterType="Diary" useGeneratedKeys="true" keyProperty="id">
+ 		insert into diary (diary_date, contents) 
+ 		values (#{diaryDate}, #{contents})
+ 	</insert>
+ 	
+ 	<update id="update" parameterType="Diary">
+ 		update diary set diary_date = #{diaryDate}, contents = #{contents}
+ 		where id = #{id}
+ 	</update>
+ 	
+ 	<delete id="deleteById" parameterType="long">
+ 		delete diary where id = #{id}
+ 	</delete>
+ 	
+ 	<delete id="deleteAll">
+ 		delete from diary
+ 	</delete>
+ 
+ 	<select id="findAll" resultType="Diary">
+ 		select * from diary
+ 	</select>
+ 	
+ 	<select id="findById" parameterType="long" resultType="Diary">
+ 		select * from diary where id = #{id}
+ 	</select>
+ 	
+ 	<select id="findByDiaryDate" parameterType="string" resultType="Diary">
+ 		select * from diary where diary_date = #{diaryDate}
+ 	</select>
+</mapper>
