@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+diary 추가 
+
+<form method="post" th:action="@{/diary/add}">
+	diary date : <input type="text" name="diaryDate" /><br/>
+	contents : <textarea name="contents"></textarea>
+	<button type="submit">추가</button>
+</form>
+<br/>
+<a href="/diary/list" th:href="@{/diary/list}">diary list</a>
+
+</body>
+</html>

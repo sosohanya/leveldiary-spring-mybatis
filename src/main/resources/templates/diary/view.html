@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+diary view page <br/>
+
+<div>
+	diary date : <span th:text="${diary.diaryDate}"></span><br/>
+	contents : <span th:text="${diary.contents}"></span><br/>
+</div>
+
+<div>
+	<a href="/diary/list" th:href="@{/diary/list}">목록</a> <br/>
+	<a href="/diary/1/modify" th:href="@{/diary/{id}/modify(id=${diary.id})}">수정하기</a> <br/>
+	<form method="post" th:action="@{/diary/{id}/delete(id=${diary.id})}">
+		<button type="submit">삭제하기</button>
+	</form>
+</div>
+</body>
+</html>

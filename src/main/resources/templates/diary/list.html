@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com"> <!-- xmlns:th를 설정하지 않으면 에디터에서 경고가 표시되어 신경쓰임 -->
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div>
+diary count : <span th:text="${count}"></span> 
+</div>
+<br/><br/>
+<div>[diary list]</div><br/>
+<table border="1">
+	<tr>
+		<th>id</th>
+		<th>date</th>
+		<th>contents</th>
+	</tr>
+	<tr th:each="diary : ${diaries}">
+		<td th:text="${diary.id}"></td>
+		<td><a href="/diary/1" th:href="@{/diary/{id}(id=${diary.id})}" th:text="${diary.diaryDate}"></a></td>
+		<td th:text="${diary.contents}"></td>
+	</tr>
+</table>
+
+<a th:href="@{/diary/add}" href="/diary/add">diary 추가</a>
+</body>
+</html>

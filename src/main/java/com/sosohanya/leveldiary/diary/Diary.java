@@ -29,6 +29,11 @@ public class Diary {
 		this.contents = contents;
 	}
 	
+	public void update(Diary updateDiary) {
+		this.diaryDate = updateDiary.diaryDate;
+		this.contents = updateDiary.contents;
+	}
+	
 	@Override
 	public String toString() {
 		return "Diary [id=" + id + ", diaryDate=" + diaryDate + ", contents=" + contents + "]";
