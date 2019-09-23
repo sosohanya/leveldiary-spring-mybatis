@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS accounts;
+DROP TABLE IF EXISTS account;
 DROP TABLE IF EXISTS diary;
  
-CREATE TABLE accounts (
+CREATE TABLE account (
   id BIGINT AUTO_INCREMENT  PRIMARY KEY,
   email VARCHAR(255) NOT NULL
 );
@@ -12,7 +12,7 @@ CREATE TABLE diary (
   contents VARCHAR(500) NOT NULL
 );
  
-INSERT INTO accounts (email) VALUES
+INSERT INTO account (email) VALUES
   ('email1@email.com'),
   ('email2@email.com'),
   ('email3@email.com');
