@@ -29,6 +29,8 @@ public class Account {
 	public Account(String email) {
 		this.email = email;
 	}
+	
+	public Account() { }
 
 	@Override
 	public String toString() {

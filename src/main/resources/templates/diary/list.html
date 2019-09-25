@@ -15,11 +15,15 @@ diary count : <span th:text="${count}"></span>
 		<th>id</th>
 		<th>date</th>
 		<th>contents</th>
+		<th>account id</th>
+		<th>account email</th>
 	</tr>
 	<tr th:each="diary : ${diaries}">
 		<td th:text="${diary.id}"></td>
 		<td><a href="/diary/1" th:href="@{/diary/{id}(id=${diary.id})}" th:text="${diary.diaryDate}"></a></td>
 		<td th:text="${diary.contents}"></td>
+		<td th:text=${diary.account.id}></td>
+		<td th:text=${diary.account.email}></td>
 	</tr>
 </table>
 

@@ -3,13 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Diary">
+	<resultMap type="Diary" id="diaryIncludeAccountMap">
+		<id property="id" column="id" />
+		<result property="diaryDate" column="diary_date"/>
+		<result property="contents" column="contents" />
+		<association property="account" column="account_id" resultMap="accountMap" />
+	</resultMap>
+	
+	<resultMap type="Account" id="accountMap">
+		<id property="id" column="account_id" />
+		<result property="email" column="email" />
+	</resultMap>
+
  	<select id="count" resultType="int">
  		select count(*) from diary
  	</select>
  	
  	<insert id="save" parameterType="Diary" useGeneratedKeys="true" keyProperty="id">
- 		insert into diary (diary_date, contents) 
- 		values (#{diaryDate}, #{contents})
+ 		insert into diary (diary_date, contents, account_id) 
+ 		values (#{diaryDate}, #{contents}, #{account.id})
  	</insert>
  	
  	<update id="update" parameterType="Diary">
@@ -25,12 +37,17 @@
  		delete from diary
  	</delete>
  
- 	<select id="findAll" resultType="Diary">
- 		select * from diary
+ 	<select id="findAll" resultMap="diaryIncludeAccountMap">
+ 		select * 
+ 		from diary d
+ 			inner join account a on d.account_id = a.id  
  	</select>
  	
- 	<select id="findById" parameterType="long" resultType="Diary">
- 		select * from diary where id = #{id}
+ 	<select id="findById" parameterType="long" resultMap="diaryIncludeAccountMap">
+ 		select * 
+ 		from diary d
+ 			inner join account a on d.account_id = a.id  
+ 		where d.id = #{id}
  	</select>
  	
  	<select id="findByDiaryDate" parameterType="string" resultType="Diary">

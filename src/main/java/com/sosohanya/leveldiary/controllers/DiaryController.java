@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sosohanya.leveldiary.account.Account;
+import com.sosohanya.leveldiary.account.MybatisAccountRepository;
 import com.sosohanya.leveldiary.diary.Diary;
 import com.sosohanya.leveldiary.diary.MybatisDiaryRepository;
 
@@ -17,6 +19,9 @@ public class DiaryController {
 	
 	@Autowired
 	MybatisDiaryRepository diaryRepository;
+	
+	@Autowired
+	MybatisAccountRepository accountRepository;
 
 	@GetMapping("/list") //목록 
 	public String list(Model model) {
@@ -34,6 +39,7 @@ public class DiaryController {
 	
 	@PostMapping("/add") //추가 처리 
 	public String addProcess(Diary diary){
+		diary.setAccount(accountRepository.findByEmail("email1@email.com")); //차후 로그인한 유저로 바뀌겠지만 우선은 임시
 		diaryRepository.save(diary);
 		
 		return "redirect:/diary/list";
