@@ -20,8 +20,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("/h2-console/**").permitAll() //1. h2-console 에서 접근할 수 있도록 설정 
                 .anyRequest().authenticated()
                 .and()
+            .csrf() 
+            	.ignoringAntMatchers("/h2-console/**") //2. csrf 설정으로 h2-console 콘솔에서 접속 시도하면 인증화면으로 변경되는 문제 해결 
+            	.and()
+        	.headers()
+        		.frameOptions().sameOrigin() //3. h2-console 콘솔 접속 후 화면 표시 이상 해결 
+        		.and()
             .formLogin()
                 .permitAll()
                 .and()
