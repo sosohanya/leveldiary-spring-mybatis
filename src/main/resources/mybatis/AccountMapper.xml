@@ -8,8 +8,8 @@
  	</select>
  	
  	<insert id="save" parameterType="Account" useGeneratedKeys="true" keyProperty="id">
- 		insert into account (email) 
- 		values (#{email})
+ 		insert into account (email, password) 
+ 		values (#{email}, #{password})
  	</insert>
  	
  	<update id="update" parameterType="Account">

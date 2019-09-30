@@ -30,8 +30,9 @@ public class JdbcAccountRepository implements AccountRepository {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
 		jdbcTemplate.update(connection -> {
-				PreparedStatement ps = connection.prepareStatement("insert into accounts (email) values (?)", Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement ps = connection.prepareStatement("insert into accounts (email, pwd) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
 				ps.setString(1, account.getEmail());
+				ps.setString(2, account.getPassword());
 				return ps;
 	        }, keyHolder);
 		
@@ -61,7 +62,8 @@ public class JdbcAccountRepository implements AccountRepository {
 		return jdbcTemplate.query("select * from accounts", 
 				(rs, rowNum) -> new Account(
 							rs.getLong("id"),
-							rs.getString("email")
+							rs.getString("email"),
+							rs.getString("password")
 						)
 				);
 				
@@ -74,7 +76,8 @@ public class JdbcAccountRepository implements AccountRepository {
 					new Object[] {id}, 
 					(rs, rowNum) -> Optional.of(new Account(
 							rs.getLong("id"),
-							rs.getString("email")
+							rs.getString("email"),
+							rs.getString("password")
 						))
 					).orElse(null);
 		}catch(EmptyResultDataAccessException e) {
@@ -89,7 +92,8 @@ public class JdbcAccountRepository implements AccountRepository {
 					new Object[] {email}, 
 					(rs, rowNum) -> Optional.of(new Account(
 							rs.getLong("id"),
-							rs.getString("email")
+							rs.getString("email"),
+							rs.getString("password")
 						))
 					).orElse(null);
 		}catch(EmptyResultDataAccessException e) {

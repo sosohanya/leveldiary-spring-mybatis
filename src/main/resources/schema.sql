@@ -3,7 +3,8 @@ DROP TABLE IF EXISTS diary;
  
 CREATE TABLE account (
   id BIGINT AUTO_INCREMENT  PRIMARY KEY,
-  email VARCHAR(255) NOT NULL
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE diary (
@@ -14,10 +15,10 @@ CREATE TABLE diary (
   FOREIGN KEY (account_id) REFERENCES account(id) ON DELETE CASCADE
 );
  
-INSERT INTO account (email) VALUES
-  ('email1@email.com'),
-  ('email2@email.com'),
-  ('email3@email.com');
+INSERT INTO account (email, password) VALUES
+  ('email1@email.com', 'pwd'),
+  ('email2@email.com', 'pwd'),
+  ('email3@email.com', 'pwd');
   
 INSERT INTO diary (diary_date, contents, account_id) VALUES 
   ('20190910', 'contents1_by1', 1),

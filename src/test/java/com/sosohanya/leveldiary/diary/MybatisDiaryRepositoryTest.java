@@ -30,7 +30,7 @@ public class MybatisDiaryRepositoryTest {
 	@Before
 	public void setUp() {
 		accountRepository.deleteAll();
-		Long insertedId = accountRepository.save(new Account("diaryAccount@email.com"));
+		Long insertedId = accountRepository.save(new Account("diaryAccount@email.com", "pwd"));
 		diaryAccount = accountRepository.findById(insertedId);
 		
 		diaryRepository.deleteAll();		

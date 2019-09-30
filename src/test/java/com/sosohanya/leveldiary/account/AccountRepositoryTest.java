@@ -28,17 +28,17 @@ public class AccountRepositoryTest { //변경전 : JdbcAccountRepositoryTest
 	@Test
 	public void count() {
 		assertEquals(0, accountRepository.count());
-		accountRepository.save(new Account("add1@email.com"));
-		accountRepository.save(new Account("add2@email.com"));
-		accountRepository.save(new Account("add3@email.com"));
+		accountRepository.save(new Account("add1@email.com", "pwd"));
+		accountRepository.save(new Account("add2@email.com", "pwd"));
+		accountRepository.save(new Account("add3@email.com", "pwd"));
 		assertEquals(3, accountRepository.count());
 	}
 	
 	@Test
 	public void saveAndFindAll() {
-		accountRepository.save(new Account("add1@email.com"));
-		accountRepository.save(new Account("add2@email.com"));
-		accountRepository.save(new Account("add3@email.com"));
+		accountRepository.save(new Account("add1@email.com", "pwd"));
+		accountRepository.save(new Account("add2@email.com", "pwd"));
+		accountRepository.save(new Account("add3@email.com", "pwd"));
 		
 		List<Account> getAll = accountRepository.findAll();
 		assertEquals(3, getAll.size());
@@ -46,7 +46,7 @@ public class AccountRepositoryTest { //변경전 : JdbcAccountRepositoryTest
 	
 	@Test
 	public void saveAndFindById() {
-		long resultId = accountRepository.save(new Account(defaultEmail));
+		long resultId = accountRepository.save(new Account(defaultEmail, "pwd"));
 		Account getAccount = accountRepository.findById(resultId);
 		
 		assertNotNull(getAccount);
@@ -55,7 +55,7 @@ public class AccountRepositoryTest { //변경전 : JdbcAccountRepositoryTest
 	
 	@Test
 	public void saveAndFindByEmail() {
-		accountRepository.save(new Account(defaultEmail));
+		accountRepository.save(new Account(defaultEmail, "pwd"));
 		Account getAccount = accountRepository.findByEmail(defaultEmail);
 		
 		assertNotNull(getAccount);
@@ -64,7 +64,7 @@ public class AccountRepositoryTest { //변경전 : JdbcAccountRepositoryTest
 	
 	@Test
 	public void update() {
-		long resultId = accountRepository.save(new Account(defaultEmail));
+		long resultId = accountRepository.save(new Account(defaultEmail, "pwd"));
 		Account getAccount = accountRepository.findById(resultId);
 		
 		getAccount.setEmail("update@email.com");
@@ -75,9 +75,9 @@ public class AccountRepositoryTest { //변경전 : JdbcAccountRepositoryTest
 	
 	@Test
 	public void deleteById() {
-		long resultId1 = accountRepository.save(new Account("add1@email.com"));
-		long resultId2 = accountRepository.save(new Account("add2@email.com"));
-		long resultId3 = accountRepository.save(new Account("add3@email.com"));
+		long resultId1 = accountRepository.save(new Account("add1@email.com", "pwd"));
+		long resultId2 = accountRepository.save(new Account("add2@email.com", "pwd"));
+		long resultId3 = accountRepository.save(new Account("add3@email.com", "pwd"));
 		
 		accountRepository.deleteById(resultId2);
 		assertEquals(2, accountRepository.count()); 

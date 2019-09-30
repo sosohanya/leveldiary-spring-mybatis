@@ -4,6 +4,15 @@ public class Account {
 
 	private long id;
 	private String email;
+	private String password;
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	
 	public long getId() {
 		return id;
@@ -21,13 +30,15 @@ public class Account {
 		this.email = email;
 	}
 
-	public Account(long id, String email) {
+	public Account(long id, String email, String password) {
 		this.id = id;
 		this.email = email;
+		this.password = password;
 	}
 	
-	public Account(String email) {
+	public Account(String email, String password) {
 		this.email = email;
+		this.password = password;
 	}
 	
 	public Account() { }

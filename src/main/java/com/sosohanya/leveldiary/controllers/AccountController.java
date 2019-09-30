@@ -34,7 +34,7 @@ public class AccountController {
 	
 	@PostMapping("/add") //추가 처리 
 	public String addProcess(String email){
-		accountRepository.save(new Account(email));
+		accountRepository.save(new Account(email, "pwd"));
 		
 		return "redirect:/account/list";
 	}
